@@ -12,8 +12,8 @@ from pyrogram.types import (
     Message,
 )
 
-from AarohiX import app
-from AarohiX.utils.database import (
+from Ayush import app
+from Ayush.utils.database import (
     add_nonadmin_chat,
     get_authuser,
     get_authuser_names,
@@ -29,15 +29,15 @@ from AarohiX.utils.database import (
     skip_off,
     skip_on,
 )
-from AarohiX.utils.decorators.admins import ActualAdminCB
-from AarohiX.utils.decorators.language import language, languageCB
-from AarohiX.utils.inline.settings import (
+from Ayush.utils.decorators.admins import ActualAdminCB
+from Ayush.utils.decorators.language import language, languageCB
+from Ayush.utils.inline.settings import (
     auth_users_markup,
     playmode_users_markup,
     setting_markup,
     vote_mode_markup,
 )
-from AarohiX.utils.inline.start import private_panel
+from Ayush.utils.inline.start import private_panel
 from config import BANNED_USERS, OWNER_ID
 
 
@@ -420,3 +420,4 @@ async def vote_change(client, CallbackQuery, _):
         )
     except MessageNotModified:
         return
+
