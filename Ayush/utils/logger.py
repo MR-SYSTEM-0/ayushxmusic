@@ -1,7 +1,7 @@
 from pyrogram.enums import ParseMode
 
-from AarohiX import app
-from AarohiX.utils.database import is_on_off
+from Ayush import app
+from Ayush.utils.database import is_on_off
 from config import LOGGER_ID
 
 
