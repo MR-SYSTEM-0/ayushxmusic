@@ -297,7 +297,7 @@ async def play_commnd(
             return await mystic.delete()
         else:
             try:
-                await Dil.stream_call(url)
+                await Aayu.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(_["black_9"])
                 return await app.send_message(
@@ -521,7 +521,7 @@ async def anonymous_check(client, CallbackQuery):
         pass
 
 
-@app.on_callback_query(filters.regex("DilPlaylists") & ~BANNED_USERS)
+@app.on_callback_query(filters.regex("AayuPlaylists") & ~BANNED_USERS)
 @languageCB
 async def play_playlists_command(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
@@ -670,5 +670,6 @@ async def slider_queries(client, CallbackQuery, _):
         return await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
         )
+
 
 
