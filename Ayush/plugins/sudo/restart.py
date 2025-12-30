@@ -38,7 +38,7 @@ from Ayush.utils.database import (
 
 from Ayush.utils.decorators.language import language
 
-from Ayush.utils.pastebin import DilBin
+from Ayush.utils.pastebin import AayuBin
 
 
 
