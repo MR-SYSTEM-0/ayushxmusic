@@ -22,7 +22,7 @@ from pyrogram import filters
 
 import config
 
-from Ayuah import app
+from Ayush import app
 
 from Ayush.misc import HAPP, SUDOERS, XCB
 
