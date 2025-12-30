@@ -6,9 +6,9 @@ import yt_dlp
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 from py_yt import VideosSearch
-from ShrutixMusic.utils.formatters import time_to_seconds
+from Ayush.utils.formatters import time_to_seconds
 import aiohttp
-from ShrutixMusic import LOGGER
+from Ayush import LOGGER
 from typing import Union
 
 YOUR_API_URL = None
@@ -16,7 +16,7 @@ FALLBACK_API_URL = "https://shrutibots.site"
 
 async def load_api_url():
     global YOUR_API_URL
-    logger = LOGGER("ShrutixMusic.platforms.Youtube.py")
+    logger = LOGGER("Ayush.platforms.Youtube.py")
     
     try:
         async with aiohttp.ClientSession() as session:
