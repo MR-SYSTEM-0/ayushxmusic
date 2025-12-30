@@ -38,9 +38,9 @@ async def init():
         importlib.import_module("Ayush.plugins" + all_module)
     LOGGER("Ayush.plugins").info("sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ ᴀʟʟ ᴍᴏᴅᴜʟᴇs...")
     await userbot.start()
-    await Dil.start()
+    await Aayu.start()
     try:
-        await Dil.stream_call("https://files.catbox.moe/slt3lk.mp4")
+        await Aayu.stream_call("https://files.catbox.moe/slt3lk.mp4")
     except NoActiveGroupCall:
         LOGGER("Ayush").error(
             "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
@@ -48,7 +48,7 @@ async def init():
         exit()
     except:
         pass
-    await Dil.decorators()
+    await Aayu.decorators()
     LOGGER("Ayush").info(
         "ᴍᴜsɪᴄ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ"
     )
