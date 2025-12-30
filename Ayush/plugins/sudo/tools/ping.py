@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from Ayush import app
-from Ayush.core.call import call_py
+from Ayush.core.call import call
 from Ayush.utils import bot_sys_stats
 from Ayush.utils.decorators.language import language
 from Ayush.utils.inline import supp_markup
@@ -21,10 +21,12 @@ async def ping_com(client, message: Message, _):
         caption=_["ping_1"].format(app.mention),
     )
 
+    # Safe PyTgCalls ping
+    pytgping = "N/A"
     try:
-        pytgping = await call_py.ping()
-    except:
-        pytgping = "N/A"
+        pytgping = await call.ping()
+    except Exception:
+        pass
 
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
