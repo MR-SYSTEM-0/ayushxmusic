@@ -29,7 +29,7 @@ async def vc_started(client, message: Message):
                 [[
                     InlineKeyboardButton(
                         "💘 ᴊᴏɪɴ ᴠᴄ 💘",
-                        url=f"https://t.me/{chat.username}?voicechat"
+                        url=f"https://t.me/{chat.username}?videochat"
                     )
                 ]]
             )
