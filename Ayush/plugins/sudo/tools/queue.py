@@ -18,7 +18,7 @@ from Ayush import app
 
 from Ayush.misc import db
 
-from Ayush.utils import DilBin, get_channeplayCB, seconds_to_min
+from Ayush.utils import AayuBin, get_channeplayCB, seconds_to_min
 
 from Ayush.utils.database import get_cmode, is_active_chat, is_music_playing
 
