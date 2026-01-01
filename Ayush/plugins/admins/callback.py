@@ -176,7 +176,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                         reply_markup=close_markup(_),
                     )
                     try:
-                        return await Dil.stop_stream(chat_id)
+                        return await Aayu.stop_stream(chat_id)
                     except:
                         return
             except:
@@ -394,5 +394,6 @@ async def markup_timer():
 
 
 asyncio.create_task(markup_timer())
+
 
 
