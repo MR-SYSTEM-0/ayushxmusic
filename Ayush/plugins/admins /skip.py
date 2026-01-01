@@ -117,5 +117,96 @@ async def skip(cli, message: Message, _, chat_id):
             await Aayu.skip_stream(chat_id, link, video=status, image=image)
         except:
             return await message.reply_text(_["call_6"])
+                try:
+            image = await YouTube.thumbnail(videoid, True)
+        except:
+            image = None
+        try:
+            await Aayu.skip_stream(chat_id, file_path, video=status, image=image)
+        except:
+            return await mystic.edit_text(_["call_6"])
+        button = stream_markup(_, chat_id)
+        img = await get_thumb(videoid)
+        run = await message.reply_photo(
+            photo=img,
+            caption=_["stream_1"].format(
+                f"https://t.me/{app.username}?start=info_{videoid}",
+                title[:23],
+                check[0]["dur"],
+                user,
+            ),
+            reply_markup=InlineKeyboardMarkup(button),
+        )
+        db[chat_id][0]["mystic"] = run
+        db[chat_id][0]["markup"] = "stream"
+        await mystic.delete()
+    elif "index_" in queued:
+        try:
+            await Aayu.skip_stream(chat_id, videoid, video=status)
+        except:
+            return await message.reply_text(_["call_6"])
+        button = stream_markup(_, chat_id)
+        run = await message.reply_photo(
+            photo=config.STREAM_IMG_URL,
+            caption=_["stream_2"].format(user),
+            reply_markup=InlineKeyboardMarkup(button),
+        )
+        db[chat_id][0]["mystic"] = run
+        db[chat_id][0]["markup"] = "tg"
+    else:
+        if videoid == "telegram":
+            image = None
+        elif videoid == "soundcloud":
+            image = None
+        else:
+            try:
+                image = await YouTube.thumbnail(videoid, True)
+            except:
+                image = None
+        try:
+            await Aayu.skip_stream(chat_id, queued, video=status, image=image)
+        except:
+            return await message.reply_text(_["call_6"])
+        if videoid == "telegram":
+            button = stream_markup(_, chat_id)
+            run = await message.reply_photo(
+                photo=config.TELEGRAM_AUDIO_URL
+                if str(streamtype) == "audio"
+                else config.TELEGRAM_VIDEO_URL,
+                caption=_["stream_1"].format(
+                    config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
+                ),
+                reply_markup=InlineKeyboardMarkup(button),
+            )
+            db[chat_id][0]["mystic"] = run
+            db[chat_id][0]["markup"] = "tg"
+        elif videoid == "soundcloud":
+            button = stream_markup(_, chat_id)
+            run = await message.reply_photo(
+                photo=config.SOUNCLOUD_IMG_URL
+                if str(streamtype) == "audio"
+                else config.TELEGRAM_VIDEO_URL,
+                caption=_["stream_1"].format(
+                    config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
+                ),
+                reply_markup=InlineKeyboardMarkup(button),
+            )
+            db[chat_id][0]["mystic"] = run
+            db[chat_id][0]["markup"] = "tg"
+        else:
+            button = stream_markup(_, chat_id)
+            img = await get_thumb(videoid)
+            run = await message.reply_photo(
+                photo=img,
+                caption=_["stream_1"].format(
+                    f"https://t.me/{app.username}?start=info_{videoid}",
+                    title[:23],
+                    check[0]["dur"],
+                    user,
+                ),
+                reply_markup=InlineKeyboardMarkup(button),
+            )
+            db[chat_id][0]["mystic"] = run
+            db[chat_id][0]["markup"] = "stream"
 
     
