@@ -28,6 +28,22 @@ def clean_title(text):
     return title.strip()
 
 
+#TEXT WRAP FUNCTION (IMPORTANT)
+def fit_text(draw, text, font, max_width):
+    words = text.split()
+    line = ""
+    result = ""
+    for w in words:
+        test = line + w + " "
+        if draw.textlength(test, font=font) <= max_width:
+            line = test
+        else:
+            result += line.strip() + "\n"
+            line = w + " "
+    result += line.strip()
+    return result
+
+
 async def get_thumb(videoid):
     if os.path.isfile(f"cache/{videoid}.png"):
         return f"cache/{videoid}.png"
@@ -66,106 +82,103 @@ async def get_thumb(videoid):
         time_font = ImageFont.truetype("Ayush/assets/font2.ttf", 24)
 
         # ---------- BIGGER PLAYER CARD ----------
-card_width = 1080
-card_height = 380
+        card_width = 1080
+        card_height = 380
 
-card = Image.new("RGBA", (card_width, card_height), (35, 35, 35, 200))
-mask = Image.new("L", card.size, 0)
-ImageDraw.Draw(mask).rounded_rectangle(
-    (0, 0, card_width, card_height),
-    radius=55,
-    fill=255
-)
-bg.paste(card, (100, 190), mask)
+        card = Image.new("RGBA", (card_width, card_height), (35, 35, 35, 200))
+        mask = Image.new("L", card.size, 0)
+        ImageDraw.Draw(mask).rounded_rectangle(
+            (0, 0, card_width, card_height),
+            radius=55,
+            fill=255
+        )
+        bg.paste(card, (100, 190), mask)
 
-# ---------- ALBUM IMAGE ----------
-album = yt.resize((240, 240))
-amask = Image.new("L", album.size, 0)
-ImageDraw.Draw(amask).rounded_rectangle(
-    (0, 0, 240, 240),
-    radius=30,
-    fill=255
-)
-bg.paste(album, (140, 250), amask)
+        # ---------- ALBUM IMAGE ----------
+        album = yt.resize((240, 240))
+        amask = Image.new("L", album.size, 0)
+        ImageDraw.Draw(amask).rounded_rectangle(
+            (0, 0, 240, 240),
+            radius=30,
+            fill=255
+        )
+        bg.paste(album, (140, 250), amask)
 
-# ---------- TEXT AREA ----------
-x = 420
-max_text_width = 620  # ensures text never goes out
+        # ---------- TEXT AREA ----------
+        x = 420
+        max_text_width = 620
 
-# SONG TITLE (AUTO FIT)
-title_text = fit_text(
-    draw,
-    clean_title(title),
-    title_font,
-    max_text_width
-)
+        title_text = fit_text(
+            draw,
+            clean_title(title),
+            title_font,
+            max_text_width
+        )
 
-draw.multiline_text(
-    (x, 250),
-    title_text,
-    font=title_font,
-    fill="white",
-    spacing=6
-)
+        draw.multiline_text(
+            (x, 250),
+            title_text,
+            font=title_font,
+            fill="white",
+            spacing=6
+        )
 
-# ARTIST / CHANNEL
-draw.text(
-    (x, 320),
-    channel,
-    font=artist_font,
-    fill=(200, 200, 200)
-)
+        draw.text(
+            (x, 320),
+            channel,
+            font=artist_font,
+            fill=(200, 200, 200)
+        )
 
-# AYUSH MUSIC • PLAYING
-draw.text(
-    (x, 355),
-    "AYUSH MUSIC • PLAYING",
-    font=bot_font,
-    fill=(150, 150, 150)
-)
+        draw.text(
+            (x, 355),
+            "AYUSH MUSIC • PLAYING",
+            font=bot_font,
+            fill=(150, 150, 150)
+        )
 
-# ---------- PROGRESS BAR ----------
-bar_y = 430
-bar_x1 = x
-bar_x2 = x + max_text_width
+        # ---------- PROGRESS BAR ----------
+        bar_y = 430
+        bar_x1 = x
+        bar_x2 = x + max_text_width
 
-draw.line(
-    (bar_x1, bar_y, bar_x2, bar_y),
-    fill=(100, 100, 100),
-    width=4
-)
+        draw.line(
+            (bar_x1, bar_y, bar_x2, bar_y),
+            fill=(100, 100, 100),
+            width=4
+        )
 
-progress_x = bar_x1 + 220
-draw.line(
-    (bar_x1, bar_y, progress_x, bar_y),
-    fill=(90, 170, 255),
-    width=4
-)
+        progress_x = bar_x1 + 220
+        draw.line(
+            (bar_x1, bar_y, progress_x, bar_y),
+            fill=(90, 170, 255),
+            width=4
+        )
 
-draw.ellipse(
-    (progress_x - 5, bar_y - 5, progress_x + 5, bar_y + 5),
-    fill="white"
-)
+        draw.ellipse(
+            (progress_x - 5, bar_y - 5, progress_x + 5, bar_y + 5),
+            fill="white"
+        )
 
-# ---------- TIME ----------
-draw.text(
-    (bar_x1 - 45, bar_y + 10),
-    "00:00",
-    font=time_font,
-    fill="white"
-)
+        draw.text(
+            (bar_x1 - 45, bar_y + 10),
+            "00:00",
+            font=time_font,
+            fill="white"
+        )
 
-draw.text(
-    (bar_x2 + 10, bar_y + 10),
-    duration,
-    font=time_font,
-    fill="white"
-)
+        draw.text(
+            (bar_x2 + 10, bar_y + 10),
+            duration,
+            font=time_font,
+            fill="white"
+        )
+
         # ---------- SAVE ----------
         bg.save(f"cache/{videoid}.png")
         os.remove(f"cache/temp_{videoid}.png")
         return f"cache/{videoid}.png"
 
     except Exception as e:
-        print(e)
+        print("Thumbnail error:", e)
         return YOUTUBE_IMG_URL
