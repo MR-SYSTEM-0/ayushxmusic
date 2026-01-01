@@ -3,10 +3,10 @@ import asyncio
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from AarohiX import YouTube, app
-from AarohiX.core.call import Dil
-from AarohiX.misc import SUDOERS, db
-from AarohiX.utils.database import (
+from Ayush import YouTube, app
+from Ayush.core.call import Aayu
+from Ayush.misc import SUDOERS, db
+from Ayush.utils.database import (
     get_active_chats,
     get_lang,
     get_upvote_count,
@@ -17,11 +17,11 @@ from AarohiX.utils.database import (
     music_on,
     set_loop,
 )
-from AarohiX.utils.decorators.language import languageCB
-from AarohiX.utils.formatters import seconds_to_min
-from AarohiX.utils.inline import close_markup, stream_markup, stream_markup_timer
-from AarohiX.utils.stream.autoclear import auto_clean
-from AarohiX.utils.thumbnails import get_thumb
+from Ayush.utils.decorators.language import languageCB
+from Ayush.utils.formatters import seconds_to_min
+from Ayush.utils.inline import close_markup, stream_markup, stream_markup_timer
+from Ayush.utils.stream.autoclear import auto_clean
+from Ayush.utils.thumbnails import get_thumb
 from config import (
     BANNED_USERS,
     SOUNCLOUD_IMG_URL,
@@ -394,3 +394,4 @@ async def markup_timer():
 
 
 asyncio.create_task(markup_timer())
+
