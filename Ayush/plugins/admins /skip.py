@@ -118,4 +118,4 @@ async def skip(cli, message: Message, _, chat_id):
         except:
             return await message.reply_text(_["call_6"])
 
-    # baki code same rahega (sirf Dil → Aayu already handled)
+    
