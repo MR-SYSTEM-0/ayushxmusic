@@ -76,7 +76,7 @@ async def get_thumb(videoid):
         draw = ImageDraw.Draw(bg)
 
         # ---------- FONTS ----------
-        title_font = ImageFont.truetype("Ayush/assets/font.ttf", 44)
+        title_font = ImageFont.truetype("Ayush/assets/font.ttf", 42)
         artist_font = ImageFont.truetype("Ayush/assets/font2.ttf", 28)
         bot_font = ImageFont.truetype("Ayush/assets/font2.ttf", 26)
         time_font = ImageFont.truetype("Ayush/assets/font2.ttf", 24)
@@ -95,7 +95,7 @@ async def get_thumb(videoid):
         bg.paste(card, (100, 190), mask)
 
         # ---------- ALBUM IMAGE ----------
-        album = yt.resize((240, 240))
+        album = yt.resize((245, 245))
         amask = Image.new("L", album.size, 0)
         ImageDraw.Draw(amask).rounded_rectangle(
             (0, 0, 240, 240),
